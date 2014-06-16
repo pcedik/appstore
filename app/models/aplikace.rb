@@ -4,6 +4,8 @@ class Aplikace < ActiveRecord::Base
 	#@application = application.new(application_params) 
 
 	has_many :version, :dependent => :destroy
+	has_many :aplikace_platform
+	has_many :platform, :through => :aplikace_platform
 
 	#private
   	#	def application_params
