@@ -6,20 +6,51 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Aplikace.create(title: 'Homo faber').version.create(version: 'v1.0')
-Aplikace.create(title: 'Der Besuch der alten Dame').version.create(version: 'v1.0')
-Aplikace.create(title: 'Julius Shulman: The Last Decade').version.create([
+p1 = Platform.create(platform: 'iOS')
+p2 = Platform.create(platform: 'Android')
+p3 = Platform.create(platform: 'Windows')
+
+a = Aplikace.create(title: 'Homo faber')
+p1.aplikace_platform.create(aplikace: a)
+a.version.create(version: 'v1.0')
+
+
+a = Aplikace.create(title: 'Homo faber')
+p2.aplikace_platform.create(aplikace: a)
+a.version.create(version: 'v1.0')
+
+a = Aplikace.create(title: 'Der Besuch der alten Dame')
+p2.aplikace_platform.create(aplikace: a)
+a.version.create(version: 'v1.0')
+
+
+a = Aplikace.create(title: 'Julius Shulman: The Last Decade')
+p1.aplikace_platform.create(aplikace: a)
+a.version.create([
   {version: 'v1.0'},
   {version: 'v2.0'},
   {version: 'v3.0'}
   ])
-Aplikace.create(title: 'Julius Shulman: Palm Springs').version.create([
+
+a = Aplikace.create(title: 'Julius Shulman: Palm Springs')
+p3.aplikace_platform.create(aplikace: a)
+a.version.create([
   {version: 'v1.0'},
   {version: 'v2.0'}
   ])
-Aplikace.create(title: 'Photographing Architecture and Interiors').version.create([
+
+
+a = Aplikace.create(title: 'Photographing Architecture and Interiors')
+p1.aplikace_platform.create(aplikace: a)
+a.version.create([
   {version: 'v1.0'},
   {version: 'v2.0'}
   ])
-Aplikace.create(title: 'Der Zauberberg').version.create(version: 'v1.0')
-Aplikace.create(title: 'In einer Familie').version.create(version: 'v1.0')
+
+a = Aplikace.create(title: 'Der Zauberberg')
+p2.aplikace_platform.create(aplikace: a)
+a.version.create(version: 'v1.0')
+
+a = Aplikace.create(title: 'In einer Familie')
+p3.aplikace_platform.create(aplikace: a)
+a.version.create(version: 'v1.0')

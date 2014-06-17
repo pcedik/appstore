@@ -1,0 +1,29 @@
+<%= form_for(@aplikace) do |f| %>
+  <% if @aplikace.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@aplikace.errors.count, "error") %> prohibited this aplikace from being saved:</h2>
+
+      <ul>
+      <% @aplikace.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+   <div class="field">
+    <%= f.label :version %><br>
+    <% the_array = ['first', 'second', 'third'] %>
+    <%= select "obj", "test", the_array.each_with_index.map {|name, index| [name,index]} %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

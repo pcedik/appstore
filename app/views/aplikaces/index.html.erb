@@ -1,0 +1,24 @@
+<h1>Seznam aplikaci</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aplikaces.each do |aplikace| %>
+      <tr>
+        <td><%= aplikace.title %></td>
+        <td><%= link_to 'Zobrazit', aplikace %></td>
+        <td><%= link_to 'Editovat', edit_aplikace_path(aplikace) %></td>
+        <td><%= link_to 'Smazat', aplikace, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Pridat novou aplikaci', new_aplikace_path %>
