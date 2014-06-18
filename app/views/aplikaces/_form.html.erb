@@ -17,9 +17,9 @@
   </div>
 
    <div class="field">
-    <%= f.label :version %><br>
-    <% the_array = ['first', 'second', 'third'] %>
-    <%= select "obj", "test", the_array.each_with_index.map {|name, index| [name,index]} %>
+    <%= f.label :platform %><br>
+    <%= collection_select(:platform_id, 1, Platform.all, :id, :platform) %>
+
   </div>
 
 
@@ -27,3 +27,17 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<!--  <%= simple_form_for :aplikace do |f| %>
+
+   <div class="field">
+     <%= f.input :title %>
+   </div>
+   <div class="field">
+    <%= f.input :platform, :collection => Platform.all,:label_method => :platform,:value_method => :id,:label => "Platfoma" ,:include_blank => false %>
+   </div>
+   <div class="action">
+     <%= f.button :submit %>
+   </div>
+ <% end %> -->
