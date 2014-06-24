@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20140615214817) do
 
   create_table "aplikaces", force: true do |t|
     t.string   "title"
+    t.string   "version"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

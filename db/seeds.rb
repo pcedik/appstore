@@ -10,47 +10,48 @@ p1 = Platform.create(platform: 'iOS')
 p2 = Platform.create(platform: 'Android')
 p3 = Platform.create(platform: 'Windows')
 
-a = Aplikace.create(title: 'Homo faber')
-p1.aplikace_platform.create(aplikace: a)
-a.version.create(version: 'v1.0')
+lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae porttitor mi. Praesent sit amet nunc vel augue feugiat ullamcorper ac et elit. Nam egestas lobortis rutrum. Suspendisse potenti. Nullam egestas iaculis rutrum. Fusce pulvinar ut lacus eu mollis. Ut a enim at risus suscipit luctus et et elit. Suspendisse laoreet mauris est, ut iaculis sapien posuere sit amet. Integer a nibh convallis, pellentesque nibh sit amet, accumsan mi. Morbi ac ante nec metus sollicitudin facilisis."
+
+p1.aplikaces.create(title: 'Homo faber', description: lorem).versions.create(version: 'v1.0')
 
 
-a = Aplikace.create(title: 'Homo faber')
-p2.aplikace_platform.create(aplikace: a)
-a.version.create(version: 'v1.0')
+a = Aplikace.create(title: 'testik', description: lorem)
+p2.aplikacePlatforms.create(aplikace: a)
+p3.aplikacePlatforms.create(aplikace: a)
+a.versions.create(version: 'v1.0')
 
-a = Aplikace.create(title: 'Der Besuch der alten Dame')
-p2.aplikace_platform.create(aplikace: a)
-a.version.create(version: 'v1.0')
+a = Aplikace.create(title: 'Der Besuch der alten Dame', description: lorem)
+p2.aplikacePlatforms.create(aplikace: a)
+a.versions.create(version: 'v1.0')
 
 
-a = Aplikace.create(title: 'Julius Shulman: The Last Decade')
-p1.aplikace_platform.create(aplikace: a)
-a.version.create([
+a = Aplikace.create(title: 'Julius Shulman: The Last Decade', description: lorem)
+p1.aplikacePlatforms.create(aplikace: a)
+a.versions.create([
   {version: 'v1.0'},
   {version: 'v2.0'},
   {version: 'v3.0'}
   ])
 
-a = Aplikace.create(title: 'Julius Shulman: Palm Springs')
-p3.aplikace_platform.create(aplikace: a)
-a.version.create([
+a = Aplikace.create(title: 'Julius Shulman: Palm Springs', description: lorem)
+p3.aplikacePlatforms.create(aplikace: a)
+a.versions.create([
   {version: 'v1.0'},
   {version: 'v2.0'}
   ])
 
 
-a = Aplikace.create(title: 'Photographing Architecture and Interiors')
-p1.aplikace_platform.create(aplikace: a)
-a.version.create([
+a = Aplikace.create(title: 'Photographing Architecture and Interiors', description: lorem)
+p1.aplikacePlatforms.create(aplikace: a)
+a.versions.create([
   {version: 'v1.0'},
   {version: 'v2.0'}
   ])
 
-a = Aplikace.create(title: 'Der Zauberberg')
-p2.aplikace_platform.create(aplikace: a)
-a.version.create(version: 'v1.0')
+a = Aplikace.create(title: 'Der Zauberberg', description: lorem)
+p2.aplikacePlatforms.create(aplikace: a)
+a.versions.create(version: 'v1.0')
 
-a = Aplikace.create(title: 'In einer Familie')
-p3.aplikace_platform.create(aplikace: a)
-a.version.create(version: 'v1.0')
+a = Aplikace.create(title: 'In einer Familie', description: lorem)
+p3.aplikacePlatforms.create(aplikace: a)
+a.versions.create(version: 'v1.0')

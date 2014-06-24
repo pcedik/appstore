@@ -2,7 +2,14 @@
 
 <p>
   <strong>Nazev:</strong>
-  <%= @aplikace.title %>
+  <%= @aplikace.title %><br/>
+  <strong>Platforma:</strong>
+  <%= @platforma.first.platform %><br/>
+  <strong>Verze:</strong>
+  <%= @version.last.version %>
+  <br/>
+  <strong>Popis:</strong>
+  <%= @aplikace.description %>
 </p>
 
 

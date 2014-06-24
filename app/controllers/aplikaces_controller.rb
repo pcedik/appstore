@@ -5,6 +5,7 @@ class AplikacesController < ApplicationController
   # GET /aplikaces.json
   def index
     @aplikaces = Aplikace.all
+
   end
 
   # GET /aplikaces/1
@@ -15,19 +16,24 @@ class AplikacesController < ApplicationController
   # GET /aplikaces/new
   def new
     @aplikace = Aplikace.new
+    @platforma = Platform.all
   end
 
   # GET /aplikaces/1/edit
   def edit
+
   end
 
   # POST /aplikaces
   # POST /aplikaces.json
   def create
-    @aplikace = Aplikace.new(aplikace_params)
+    plat = Platform.find(1)
+    @aplikace = plat.aplikaces.new(aplikace_params)
+    @aplikace.versions.new(version: @aplikace.version)
+    #@aplikace = Aplikace.new(aplikace_params)
 
     respond_to do |format|
-      if @aplikace.save
+      if plat.save
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully created.' }
         format.json { render :show, status: :created, location: @aplikace }
       else
@@ -40,6 +46,7 @@ class AplikacesController < ApplicationController
   # PATCH/PUT /aplikaces/1
   # PATCH/PUT /aplikaces/1.json
   def update
+
     respond_to do |format|
       if @aplikace.update(aplikace_params)
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully updated.' }
@@ -65,12 +72,18 @@ class AplikacesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_aplikace
       @aplikace = Aplikace.find(params[:id])
+      @platforma = Platform.joins(:aplikaces).where( "aplikaces.id" => @aplikace.id)
+      @version = Version.where(aplikace_id: @aplikace.id)
     end
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aplikace_params
-      params.require(:aplikace).permit(:title)
+      params.require(:aplikace).permit(:title, :description, :version)
+    end
+
+    def platforma_params
+      params.require(:aplikace).permit(:platform)
     end
 
 end
