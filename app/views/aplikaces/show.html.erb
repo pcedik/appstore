@@ -4,9 +4,16 @@
   <strong>Nazev:</strong>
   <%= @aplikace.title %><br/>
   <strong>Platforma:</strong>
-  <%= @platforma.first.platform %><br/>
+  <% @platforma.each do |plat| %>
+  			<%= plat.platform %> 
+  			<%= "," unless @platforma.last %>
+  <% end %>
+  <br/>	
   <strong>Verze:</strong>
-  <%= @version.last.version %>
+  <% @version.each do |ver| %>
+  			<%= ver.version %>
+  			<%="," unless @version.last  %>
+  <% end %>	
   <br/>
   <strong>Popis:</strong>
   <%= @aplikace.description %>

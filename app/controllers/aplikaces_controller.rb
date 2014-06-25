@@ -16,7 +16,7 @@ class AplikacesController < ApplicationController
   # GET /aplikaces/new
   def new
     @aplikace = Aplikace.new
-    @platforma = Platform.all
+    @platforma ||= Platform.find(1)
   end
 
   # GET /aplikaces/1/edit
@@ -27,13 +27,13 @@ class AplikacesController < ApplicationController
   # POST /aplikaces
   # POST /aplikaces.json
   def create
-    plat = Platform.find(1)
-    @aplikace = plat.aplikaces.new(aplikace_params)
-    @aplikace.versions.new(version: @aplikace.version)
-    #@aplikace = Aplikace.new(aplikace_params)
 
+    @platforma = Platform.find(platforma_params[:platform])
+    @aplikace = @platforma.aplikaces.new(aplikace_params)
+    @aplikace.versions.new(version: @aplikace.version)
+    #@aplikace = Aplikace.new(aplikace_params.)
     respond_to do |format|
-      if plat.save
+      if @platforma.save
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully created.' }
         format.json { render :show, status: :created, location: @aplikace }
       else
@@ -73,6 +73,7 @@ class AplikacesController < ApplicationController
     def set_aplikace
       @aplikace = Aplikace.find(params[:id])
       @platforma = Platform.joins(:aplikaces).where( "aplikaces.id" => @aplikace.id)
+      @sel_pl = @platforma.last
       @version = Version.where(aplikace_id: @aplikace.id)
     end
 

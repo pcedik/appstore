@@ -18,8 +18,7 @@
 
    <div class="field">
     <%= f.label :platform %>
-
-    <%= f.collection_select :platform, @platforma, :id, :platform, {:selected => @platforma.first.id } %>
+    <%= f.collection_select :platform, Platform.all, :id, :platform, {:selected => @sel_pl }%>
 
 
   </div>
