@@ -3,8 +3,10 @@
   <%= @apl.title %><br/>
   <strong>Platforma:</strong>
   <% @platforma.each do |plat| %>
-        <%= plat.platform %> 
-        <%= "," unless @platforma.last %>
+        <%= link_to href: 'http://www.android.com/' do %>
+        <%= image_tag plat.platform + '.png', alt: plat.platform %>
+  <% end %>
+
   <% end %>
   <br/> 
   <strong>Verze:</strong>
