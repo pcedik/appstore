@@ -5,18 +5,25 @@ class AplikacesController < ApplicationController
   # GET /aplikaces.json
   def index
     @aplikaces = Aplikace.all
-
   end
 
   # GET /aplikaces/1
   # GET /aplikaces/1.json
   def show
+
   end
+
+  # GET /aplikaces/list
+  def list
+     @aplikaces = Aplikace.all
+  end
+
 
   # GET /aplikaces/new
   def new
-    @aplikace = Aplikace.new
-    @platforma ||= Platform.find(1)
+    @aplikace ||= Aplikace.new
+    @platforma ||= Platform.all
+    @sel_pl ||= @platforma.first.id
   end
 
   # GET /aplikaces/1/edit
@@ -29,14 +36,16 @@ class AplikacesController < ApplicationController
   def create
 
     @platforma = Platform.find(platforma_params[:platform])
+
     @aplikace = @platforma.aplikaces.new(aplikace_params)
     @aplikace.versions.new(version: @aplikace.version)
-    #@aplikace = Aplikace.new(aplikace_params.)
     respond_to do |format|
       if @platforma.save
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully created.' }
         format.json { render :show, status: :created, location: @aplikace }
       else
+        @platforma = Platform.all
+        @sel_pl = platforma_params[:platform]
         format.html { render :new }
         format.json { render json: @aplikace.errors, status: :unprocessable_entity }
       end
@@ -46,12 +55,13 @@ class AplikacesController < ApplicationController
   # PATCH/PUT /aplikaces/1
   # PATCH/PUT /aplikaces/1.json
   def update
-
     respond_to do |format|
       if @aplikace.update(aplikace_params)
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully updated.' }
         format.json { render :show, status: :ok, location: @aplikace }
       else
+        @sel_pl = platforma_params[:platform]
+        @sel_ver = aplikace_params[:version]
         format.html { render :edit }
         format.json { render json: @aplikace.errors, status: :unprocessable_entity }
       end
@@ -75,6 +85,7 @@ class AplikacesController < ApplicationController
       @platforma = Platform.joins(:aplikaces).where( "aplikaces.id" => @aplikace.id)
       @sel_pl = @platforma.last
       @version = Version.where(aplikace_id: @aplikace.id)
+      @sel_ver = @version.last
     end
 
 

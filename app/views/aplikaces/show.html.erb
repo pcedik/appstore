@@ -1,24 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nazev:</strong>
-  <%= @aplikace.title %><br/>
-  <strong>Platforma:</strong>
-  <% @platforma.each do |plat| %>
-  			<%= plat.platform %> 
-  			<%= "," unless @platforma.last %>
-  <% end %>
-  <br/>	
-  <strong>Verze:</strong>
-  <% @version.each do |ver| %>
-  			<%= ver.version %>
-  			<%="," unless @version.last  %>
-  <% end %>	
-  <br/>
-  <strong>Popis:</strong>
-  <%= @aplikace.description %>
-</p>
+<%
+@apl = @aplikace
+%>
 
+<%= render 'show' %>
 
 <%= link_to 'Editovat', edit_aplikace_path(@aplikace) %> |
 <%= link_to 'Zpet', aplikaces_path %>

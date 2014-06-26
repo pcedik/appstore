@@ -17,16 +17,18 @@
   </div>
 
    <div class="field">
-    <%= f.label :platform %>
-    <%= f.collection_select :platform, Platform.all, :id, :platform, {:selected => @sel_pl }%>
 
+    <%= f.label "platform", "Platforma", class: "select" %>
+    <%= f.collection_select :platform, @platforma, :id, :platform, {:selected => @sel_pl }, "data-native-menu" => :false %>
+    new
 
   </div>
 
   <div class="field">
     <%= f.label :version %>
     <% if @version!=nil %>
-        <%= f.collection_select :version, @version, :id, :version, {:selected => @version.last.id } %>
+        <%= f.collection_select :version, @version, :id, :version, {:selected => @sel_ver, :class=>'select-choice-a' } %>
+        new
     <% else %>
         <%= f.text_field :version %>
     <% end %>

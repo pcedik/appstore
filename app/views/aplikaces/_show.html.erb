@@ -1,0 +1,18 @@
+<p>
+  <strong>Nazev:</strong>
+  <%= @apl.title %><br/>
+  <strong>Platforma:</strong>
+  <% @platforma.each do |plat| %>
+        <%= plat.platform %> 
+        <%= "," unless @platforma.last %>
+  <% end %>
+  <br/> 
+  <strong>Verze:</strong>
+  <% @version.each do |ver| %>
+        <%= ver.version %>
+        <%="," unless @version.last  %>
+  <% end %> 
+  <br/>
+  <strong>Popis:</strong>
+  <%= @apl.description %>
+</p>

@@ -11,14 +11,14 @@
     <% @aplikaces.each do |aplikace| %>
       <tr>
         <td><%= aplikace.title %></td>
-        <td><%= link_to 'Zobrazit', aplikace %></td>
-        <td><%= link_to 'Editovat', edit_aplikace_path(aplikace) %></td>
-        <td><%= link_to 'Smazat', aplikace, method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+        <td><%= link_to 'Zobrazit', aplikace, class:"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini" %></td>
+        <td><%= link_to 'Editovat', edit_aplikace_path(aplikace),class:"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini" %></td>
+        <td><div data-role="controlgroup" data-type="horizontal" data-mini="true"><%= link_to 'Smazat', aplikace, method: :delete, data: { confirm: 'Jste si jisti?' }, class: "ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-delete ui-btn-b"%></div></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'Pridat novou aplikaci', new_aplikace_path %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+<%= link_to 'Pridat', new_aplikace_path, class: "ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-plus ui-btn-b" %></div>

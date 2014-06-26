@@ -1,0 +1,10 @@
+<% 
+   @aplikaces.each do |apl| 
+   @apl = apl 
+   @platforma = Platform.joins(:aplikaces).where( "aplikaces.id" => @apl.id) 
+   @version = Version.where(aplikace_id: @apl.id)
+%>
+
+<%= render 'show' %>
+
+<% end %>
