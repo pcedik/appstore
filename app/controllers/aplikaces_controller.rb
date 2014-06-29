@@ -13,7 +13,8 @@ class AplikacesController < ApplicationController
 
   end
 
-  # GET /aplikaces/list
+  # GET /list
+  # GET /list.json
   def list
      @aplikaces = Aplikace.all
   end
@@ -22,8 +23,9 @@ class AplikacesController < ApplicationController
   # GET /aplikaces/new
   def new
     @aplikace ||= Aplikace.new
-    @platforma ||= Platform.all
-    @sel_pl ||= @platforma.first.id
+    @aplikace.versions.build
+    @aplikace.aplikacePlatforms.build
+    @sel_pl ||= Platform.first.id
   end
 
   # GET /aplikaces/1/edit
@@ -34,18 +36,14 @@ class AplikacesController < ApplicationController
   # POST /aplikaces
   # POST /aplikaces.json
   def create
-
-    @platforma = Platform.find(platforma_params[:platform])
-
-    @aplikace = @platforma.aplikaces.new(aplikace_params)
-    @aplikace.versions.new(version: @aplikace.version)
+    @aplikace = Aplikace.new(aplikace_params)
     respond_to do |format|
-      if @platforma.save
+      if @aplikace.save
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully created.' }
         format.json { render :show, status: :created, location: @aplikace }
       else
         @platforma = Platform.all
-        @sel_pl = platforma_params[:platform]
+        #@sel_pl = platforma_params[:platform]
         format.html { render :new }
         format.json { render json: @aplikace.errors, status: :unprocessable_entity }
       end
@@ -60,8 +58,8 @@ class AplikacesController < ApplicationController
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully updated.' }
         format.json { render :show, status: :ok, location: @aplikace }
       else
-        @sel_pl = platforma_params[:platform]
-        @sel_ver = aplikace_params[:version]
+        #@sel_pl = platforma_params[:platform]
+        #@sel_ver = aplikace_params[:version]
         format.html { render :edit }
         format.json { render json: @aplikace.errors, status: :unprocessable_entity }
       end
@@ -82,20 +80,13 @@ class AplikacesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_aplikace
       @aplikace = Aplikace.find(params[:id])
-      @platforma = Platform.joins(:aplikaces).where( "aplikaces.id" => @aplikace.id)
-      @sel_pl = @platforma.last
-      @version = Version.where(aplikace_id: @aplikace.id)
-      @sel_ver = @version.last
+      @sel_ver = @aplikace.versions.last
     end
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aplikace_params
-      params.require(:aplikace).permit(:title, :description, :version)
-    end
-
-    def platforma_params
-      params.require(:aplikace).permit(:platform)
+      params.require(:aplikace).permit(:title, :description, :aplikacePlatforms_attributes => [:platform_id, :id, :_destroy], :versions_attributes => [:version, :id, :_destroy])
     end
 
 end

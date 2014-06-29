@@ -20,6 +20,7 @@ p2.aplikacePlatforms.create(aplikace: a)
 p3.aplikacePlatforms.create(aplikace: a)
 a.versions.create(version: 'v1.0')
 
+
 a = Aplikace.create(title: 'Der Besuch der alten Dame', description: lorem)
 p2.aplikacePlatforms.create(aplikace: a)
 a.versions.create(version: 'v1.0')

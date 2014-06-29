@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615214817) do
+ActiveRecord::Schema.define(version: 20140627175552) do
 
   create_table "aplikace_platforms", force: true do |t|
     t.integer  "aplikace_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20140615214817) do
 
   create_table "aplikaces", force: true do |t|
     t.string   "title"
-    t.string   "version"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,6 +32,18 @@ ActiveRecord::Schema.define(version: 20140615214817) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "previews", force: true do |t|
+    t.string   "name_file_name"
+    t.string   "name_content_type"
+    t.integer  "name_file_size"
+    t.datetime "name_updated_at"
+    t.integer  "aplikace_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "previews", ["aplikace_id"], name: "index_previews_on_aplikace_id"
 
   create_table "versions", force: true do |t|
     t.integer  "aplikace_id"
