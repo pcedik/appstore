@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20140627175552) do
   end
 
   create_table "previews", force: true do |t|
-    t.string   "name_file_name"
-    t.string   "name_content_type"
-    t.integer  "name_file_size"
-    t.datetime "name_updated_at"
+    t.string   "preview_file_name"
+    t.string   "preview_content_type"
+    t.integer  "preview_file_size"
+    t.datetime "preview_updated_at"
     t.integer  "aplikace_id"
     t.datetime "created_at"
     t.datetime "updated_at"

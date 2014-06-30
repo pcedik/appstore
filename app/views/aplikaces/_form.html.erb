@@ -20,8 +20,13 @@
 
     <%= f.fields_for :aplikacePlatforms do |builder| %>
     <%= builder.label :platforms %>
-        <%=  builder.collection_select :platform_id, Platform.all, :id, :platform, {:selected => @aplikace.platforms.first.id }, "data-native-menu" => :false %>
-              
+        <% if @aplikace.platforms.first.nil? %>
+            <%=  builder.collection_select :platform_id, Platform.all, :id, :platform, {:selected => 1, "data-native-menu" => :false }%>
+        <% else 
+        %>
+
+            <%=  builder.collection_select :platform_id, Platform.all, :id, :platform,  :prompt => true %>
+        <% end %>      
     <% end %>
     new
 
@@ -44,8 +49,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :foto %>
-    <%= f.file_field :foto %>
+    <%= f.fields_for :previews do |builder| %>
+      <%= builder.label :preview %>
+      <%= builder.file_field :preview %>
+     <% end %> 
   </div>
 
   <div class="actions">

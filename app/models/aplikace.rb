@@ -3,6 +3,6 @@ class Aplikace < ActiveRecord::Base
 	has_many :versions, :dependent => :destroy
 	has_many :aplikacePlatforms, :dependent => :destroy
 	has_many :platforms, :through => :aplikacePlatforms
-	has_many :previews, :dependent => :destroy
-	accepts_nested_attributes_for :aplikacePlatforms, :versions, allow_destroy: true
+	has_many :previews
+	accepts_nested_attributes_for :aplikacePlatforms, :versions, :previews, allow_destroy: true
 end

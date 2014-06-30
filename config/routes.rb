@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'aplikaces/index'
 
   get '/list' => 'aplikaces#list', as: 'list'
+  
 
   resources :aplikaces
   # The priority is based upon order of creation: first created -> highest priority.
