@@ -16,7 +16,13 @@ class AplikacesController < ApplicationController
   # GET /list
   # GET /list.json
   def list
-     @aplikaces = Aplikace.all
+     plat = Platform.find_by(platform: params[:platforma])
+     unless plat.nil?
+        @aplikaces = plat.aplikaces
+
+     else
+        @aplikaces = Aplikace.all
+     end
   end
 
 
@@ -83,7 +89,7 @@ class AplikacesController < ApplicationController
     def aplikace_params
       params.require(:aplikace).permit(:title, :description,  
         :aplikacePlatforms_attributes => [:platform_id, :id, :_destroy], 
-        :versions_attributes => [:version, :id, :_destroy], :previews_attributes => [:preview, :id, :_destroy])
+        :versions_attributes => [:version, :id, :_destroy], :previews_attributes => [:foto])
     end
 
 end

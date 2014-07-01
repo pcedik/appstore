@@ -19,6 +19,8 @@
   <%= @aplikace.description %>
   <br/>
   <strong>Galerie:</strong>
-   <%= Previews.inspect =>
+  <% @aplikace.previews.each do |pre| %>
+    <%= image_tag pre.foto.url(:thumb) %>
+  <% end %> 
 
 </p>

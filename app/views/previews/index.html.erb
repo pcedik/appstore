@@ -1,0 +1,21 @@
+<h1>Galerie</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @previews.each do |pre| %>
+      <tr>
+        <td><%= image_tag pre.foto.url(:thumb) %></td>
+        <td><%= link_to 'Zobrazit', aplikace_preview_path(pre.aplikace_id,pre.id) %></td>
+        <td><%= link_to 'Editovat', edit_aplikace_preview_path(pre.aplikace_id,pre.id) %></td> 
+        <td><%= link_to 'Smazat', aplikace_preview_path(pre.aplikace_id,pre.id), method: :delete, data: { confirm: 'Jste si jisti?' } %></td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

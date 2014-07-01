@@ -49,9 +49,15 @@
   </div>
 
   <div class="field">
-    <%= f.fields_for :previews do |builder| %>
-      <%= builder.label :preview %>
-      <%= builder.file_field :preview %>
+          <% @aplikace.previews.each do |pre| %>
+              <%= image_tag pre.foto.url(:thumb) %>
+
+          <% end %> 
+          <%= f.fields_for :previews do |builder| %>
+          <%= builder.label :foto %>
+          <%= builder.file_field :foto %>
+
+
      <% end %> 
   </div>
 
