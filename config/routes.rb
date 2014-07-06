@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'aplikaces/index'
 
   get '/list' => 'aplikaces#list', as: 'list'

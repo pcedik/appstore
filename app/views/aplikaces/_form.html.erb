@@ -18,27 +18,41 @@
 
    <div class="field">
 
-    <%= f.fields_for :aplikacePlatforms do |builder| %>
+    <%= f.fields_for :aplikacePlatforms, @aplikace.aplikacePlatforms.first do |builder| %>
     <%= builder.label :platforms %>
         <% if @aplikace.platforms.first.nil? %>
             <%=  builder.collection_select :platform_id, Platform.all, :id, :platform, {:selected => 1, "data-native-menu" => :false }%>
         <% else 
         %>
 
-            <%=  builder.collection_select :platform_id, Platform.all, :id, :platform,  :prompt => true %>
+            <%=  builder.collection_select :platform_id, @aplikace.platforms, :id, :platform %>
+            Pridat dalsi platformu
         <% end %>      
     <% end %>
-    new
+    
 
   </div>
 
   <div class="field">
   
-                  <%= f.fields_for :versions do |builder| %>
-                
-
+                  <%= f.fields_for :versions, @aplikace.versions do |builder| %>
                     <%= builder.label :version %>
-                    <%= builder.text_field :version %>
+
+
+                            <%= builder.text_field :version %>
+
+
+
+                    
+                    
+                    
+
+                    <%= builder.fields_for :attachments, @aplikace.versions.build.attachments.build do |builder2| %>
+                        <%= builder2.label :file %>
+                        <%= builder2.file_field :file %>
+                    <% end %>
+
+                    <br/>
               
                 <% end %>
   </div>
@@ -53,12 +67,15 @@
               <%= image_tag pre.foto.url(:thumb) %>
 
           <% end %> 
-          <%= f.fields_for :previews do |builder| %>
+          <%= f.fields_for :previews, @aplikace.previews.build do |builder| %>
           <%= builder.label :foto %>
           <%= builder.file_field :foto %>
 
 
      <% end %> 
+  </div>
+
+  <div class="field">
   </div>
 
   <div class="actions">

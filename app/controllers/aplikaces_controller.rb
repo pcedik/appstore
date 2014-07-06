@@ -16,11 +16,13 @@ class AplikacesController < ApplicationController
   # GET /list
   # GET /list.json
   def list
-     plat = Platform.find_by(platform: params[:platforma])
-     unless plat.nil?
+     unless params[:platforma].nil?
+        #plat = Platform.where('lower(platform) = ?', params[:platforma].downcase).first
+        plat = Platform.ignoreCase(params[:platforma]).first
+     end
+     unless plat.nil? 
         @aplikaces = plat.aplikaces
-
-     else
+     else 
         @aplikaces = Aplikace.all
      end
   end
@@ -29,9 +31,10 @@ class AplikacesController < ApplicationController
   # GET /aplikaces/new
   def new
     @aplikace = Aplikace.new
-    @aplikace.versions.build
-    @aplikace.aplikacePlatforms.build
-    @aplikace.previews.build
+    #@aplikace.versions.build.attachments.build
+    #@aplikace.aplikacePlatforms.build
+    @aplikace.previews.build  
+    
   end
 
   # GET /aplikaces/1/edit
@@ -57,6 +60,7 @@ class AplikacesController < ApplicationController
   # PATCH/PUT /aplikaces/1
   # PATCH/PUT /aplikaces/1.json
   def update
+
     respond_to do |format|
       if @aplikace.update(aplikace_params)
         format.html { redirect_to @aplikace, notice: 'Aplikace was successfully updated.' }
@@ -87,9 +91,11 @@ class AplikacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aplikace_params
-      params.require(:aplikace).permit(:title, :description,  
+      #params.require(:aplikace).permit(:all)
+      params.require(:aplikace).permit(:title, :description, 
         :aplikacePlatforms_attributes => [:platform_id, :id, :_destroy], 
-        :versions_attributes => [:version, :id, :_destroy], :previews_attributes => [:foto])
+        :versions_attributes => [:version, [:attachments_attributes => [:file]], :id, :_destroy], 
+        :previews_attributes => [:foto])
     end
 
 end

@@ -22,5 +22,9 @@
   <% @aplikace.previews.each do |pre| %>
     <%= image_tag pre.foto.url(:thumb) %>
   <% end %> 
+  <br/>
+  <% unless @aplikace.versions.first.attachments.first.nil? %>
+        <%= link_to "Download", @aplikace.versions.first.attachments.first.file.url(:original, false) %>
+   <% end %>
 
 </p>

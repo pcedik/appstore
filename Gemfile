@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'ckeditor'
+gem 'devise'
+gem 'rails_admin'
 gem 'paperclip'
-gem 'jquery_mobile_rails'
 gem 'simple_form'
+gem 'emcee'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
