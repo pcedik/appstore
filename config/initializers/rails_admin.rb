@@ -48,8 +48,19 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.excluded_models = ["AplikacePlatform"]
+  #config.excluded_models = ["AplikacePlatform"]
+  config.model Aplikace do
+    list do
+      field :title
+    end
+    show do
+      exclude_fields :aplikacePlatforms, :versions
+    end
+    edit do
+      exclude_fields :platforms, :versions
+    end
 
+  end
 
 
 end
