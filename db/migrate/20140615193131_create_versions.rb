@@ -1,7 +1,7 @@
 class CreateVersions < ActiveRecord::Migration
   def change
     create_table :versions do |t|
-      t.integer :aplikace_id
+      t.integer :aplikace_platform_id
       t.string :version
 
       t.timestamps

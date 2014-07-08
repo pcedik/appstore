@@ -65,15 +65,15 @@ ActiveRecord::Schema.define(version: 20140705212716) do
     t.string   "foto_content_type"
     t.integer  "foto_file_size"
     t.datetime "foto_updated_at"
-    t.integer  "aplikace_id"
+    t.integer  "aplikace_platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "previews", ["aplikace_id"], name: "index_previews_on_aplikace_id"
+  add_index "previews", ["aplikace_platform_id"], name: "index_previews_on_aplikace_platform_id"
 
   create_table "versions", force: true do |t|
-    t.integer  "aplikace_id"
+    t.integer  "aplikace_platform_id"
     t.string   "version"
     t.datetime "created_at"
     t.datetime "updated_at"

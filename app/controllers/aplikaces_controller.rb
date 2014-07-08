@@ -93,8 +93,9 @@ class AplikacesController < ApplicationController
     def aplikace_params
       #params.require(:aplikace).permit(:all)
       params.require(:aplikace).permit(:title, :description, 
-        :aplikacePlatforms_attributes => [:platform_id, :id, :_destroy], 
-        :versions_attributes => [:version, [:attachments_attributes => [:file]], :id, :_destroy], 
+        :aplikacePlatforms_attributes => [:platform_id, :id, :_destroy, 
+          :versions_attributes => [:version, [:attachments_attributes => [:file]], :id, :_destroy]], 
+         
         :previews_attributes => [:foto])
     end
 

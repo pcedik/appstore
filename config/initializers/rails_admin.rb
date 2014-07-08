@@ -20,11 +20,16 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new
-    export
+    #export
     bulk_delete
     show
-    edit
-    delete
+    edit do
+      except 'Platform'
+    end
+    delete do
+      except 'Platform'
+    end
+
     show_in_app
 
     ## With an audit adapter, you can add:
@@ -36,9 +41,26 @@ RailsAdmin.config do |config|
       'Google' => 'http://www.google.com'
   }
 
+
+  config.model Aplikace do
+    list do
+      field :title
+      field :alias 
+    end
+    edit do
+      exclude_fields :platforms
+    end
+  end
+
   config.model Platform do
     object_label_method do
       :platform
+    end
+    list do
+      field :platform
+    end
+    edit do
+      exclude_fields :aplikaces, :aplikacePlatforms
     end
   end
 
@@ -46,21 +68,45 @@ RailsAdmin.config do |config|
     object_label_method do
       :version
     end
+    visible false
+    edit do
+      exclude_fields :aplikace_platform_id
+    end
   end
 
-  #config.excluded_models = ["AplikacePlatform"]
-  config.model Aplikace do
-    list do
-      field :title
-    end
-    show do
-      exclude_fields :aplikacePlatforms, :versions
+  config.model AplikacePlatform do
+    object_label_method do
+      :platform_label_method
     end
     edit do
-      exclude_fields :platforms, :versions
+      exclude_fields :aplikace
     end
-
+    visible false
   end
 
+  config.model Preview do
+    object_label_method do
+      :foto_file_name
+    end
+    edit do
+      exclude_fields :aplikace_platform_id
+    end
+    visible false
+  end
+
+  config.model Attachment do
+    object_label_method do
+      :file_file_name
+    end
+    edit do
+      exclude_fields :version
+    end
+    visible false
+  end
+
+
+  def platform_label_method
+    "Platforma #{Platform.find(self.platform_id).platform}"
+  end
 
 end

@@ -21,7 +21,7 @@
     <%= f.fields_for :aplikacePlatforms, @aplikace.aplikacePlatforms.first do |builder| %>
     <%= builder.label :platforms %>
         <% if @aplikace.platforms.first.nil? %>
-            <%=  builder.collection_select :platform_id, Platform.all, :id, :platform, {:selected => 1, "data-native-menu" => :false }%>
+            <%=  builder.collection_select :platform_id, Platform.all, :id, :platform, {:selected => 1}%>
         <% else 
         %>
 

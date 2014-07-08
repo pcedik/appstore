@@ -2,5 +2,5 @@
 
 <%= render 'show' %>
 
-<%= link_to 'Editovat', edit_aplikace_path(@aplikace) %> |
+<%= link_to 'Editovat', rails_admin.edit_path(model_name: 'aplikace', id: @aplikace.id) %> |
 <%= link_to 'Zpet', aplikaces_path %>

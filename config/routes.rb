@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'aplikaces/index'
 
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'aplikaces#index'
+  root 'aplikaces#list'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

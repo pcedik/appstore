@@ -10,21 +10,27 @@
   <% end %>
   <br/> 
   <strong>Verze:</strong>
-  <% @aplikace.versions.each do |ver| %>
-        <%= ver.version -%> 
-        <%=", " unless ver == @aplikace.versions.last %>
+  <% @aplikace.aplikacePlatforms.each do |ver| %>
+      <% ver.versions.each do |ver2| %>
+          <%= ver2.version -%> 
+          <% ver2.attachments.each do |install| %> 
+              <% unless install.nil? %>
+                  <%= link_to "Download", install.file.url(:original, false) %> 
+              <% end %>
+          <% end %>
+      <% end %>
+
+      <br/>
   <% end %> 
   <br/>
   <strong>Popis:</strong>
   <%= @aplikace.description %>
   <br/>
   <strong>Galerie:</strong>
-  <% @aplikace.previews.each do |pre| %>
-    <%= image_tag pre.foto.url(:thumb) %>
+  <% @aplikace.aplikacePlatforms.each do |pre| %>
+        <% pre.previews.each do |pre2| %>
+            <%= image_tag pre2.foto.url(:thumb) %>
+        <% end %>
+        <br/>
   <% end %> 
-  <br/>
-  <% unless @aplikace.versions.first.attachments.first.nil? %>
-        <%= link_to "Download", @aplikace.versions.first.attachments.first.file.url(:original, false) %>
-   <% end %>
-
 </p>

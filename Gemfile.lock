@@ -34,9 +34,6 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
     callsite (0.0.11)
-    ckeditor (4.0.11)
-      mime-types
-      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -56,7 +53,7 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    emcee (1.0.1)
+    emcee (1.0.3)
       nokogiri (~> 1.0)
       rails (~> 4.0)
     erubis (2.7.0)
@@ -67,7 +64,7 @@ GEM
       tilt
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (2.1.1)
+    jbuilder (2.1.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.1)
@@ -82,13 +79,13 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_request (0.3.0)
-      callsite
-      rack-contrib
-      railties
+    meta_request (0.3.3)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.3.5)
+    minitest (5.4.0)
     multi_json (1.10.1)
     nested_form (0.3.2)
     nokogiri (1.6.2.1)
@@ -186,7 +183,6 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  ckeditor
   coffee-rails (~> 4.0.0)
   devise
   emcee

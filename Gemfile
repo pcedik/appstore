@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ckeditor'
+
 gem 'devise'
 gem 'rails_admin'
 gem 'paperclip'
