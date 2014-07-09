@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'devise'
 gem 'rails_admin'
 gem 'paperclip'
