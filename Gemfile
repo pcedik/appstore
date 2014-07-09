@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'rails_admin'
 gem 'paperclip'
-gem 'simple_form'
+
 gem 'emcee'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

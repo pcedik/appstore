@@ -11,18 +11,22 @@
   <br/> 
   <strong>Verze:</strong>
   <% @aplikace.aplikacePlatforms.each do |ver| %>
+  <br/>
+  Verze pro plaftormu <%= ver.platform.platform %>:
       <% ver.versions.each do |ver2| %>
-          <%= ver2.version -%> 
-          <% ver2.attachments.each do |install| %> 
+          <br/>
+          <%= ver2.version -%> :
+
+          <% ver2.attachments.each do |install| %>
               <% unless install.nil? %>
-                  <%= link_to "Download", install.file.url(:original, false) %> 
+                  <%= link_to "Download", install.file.url(:original, false) %> ,
               <% end %>
           <% end %>
       <% end %>
 
       <br/>
   <% end %> 
-  <br/>
+
   <strong>Popis:</strong>
   <%= @aplikace.description %>
   <br/>
