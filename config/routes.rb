@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  devise_scope :user do
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'aplikaces/index'
 
@@ -10,12 +16,17 @@ Rails.application.routes.draw do
   resources :aplikaces do
     resources :previews
   end
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'aplikaces#list'
 
+
+  get '/:alternativeName'  => 'aplikaces#showAlias', as: 'showAlias'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -64,4 +75,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

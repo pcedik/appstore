@@ -10,4 +10,17 @@ p1 = Platform.create(platform: 'iOS')
 p2 = Platform.create(platform: 'Android')
 p3 = Platform.create(platform: 'Windows')
 
-lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae porttitor mi. Praesent sit amet nunc vel augue feugiat ullamcorper ac et elit. Nam egestas lobortis rutrum. Suspendisse potenti. Nullam egestas iaculis rutrum. Fusce pulvinar ut lacus eu mollis. Ut a enim at risus suscipit luctus et et elit. Suspendisse laoreet mauris est, ut iaculis sapien posuere sit amet. Integer a nibh convallis, pellentesque nibh sit amet, accumsan mi. Morbi ac ante nec metus sollicitudin facilisis."
+applicationsCount = 30
+maxVersion = 5
+
+applicationsCount.times do
+	apl = Aplikace.create(title: Faker::Product.product_name, description: Faker::Lorem.paragraph, alternativeName: Faker::Lorem.word)
+	plCount = Platform.ids.sample
+	Platform.ids.sample(plCount).each do |p|
+		aplPlt = apl.aplikacePlatforms.create(platform_id: p)
+		verCount = [*1..maxVersion].sample
+		for i in 1..verCount
+			aplPlt.versions.create(version: "ver#{i}")
+		end
+	end 
+end

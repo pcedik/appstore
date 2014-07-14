@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem "simple_form"
+gem "omniauth-google-oauth2"
+gem "cancan"
+gem 'ffaker'
 gem 'devise'
 gem 'rails_admin'
 gem 'paperclip'

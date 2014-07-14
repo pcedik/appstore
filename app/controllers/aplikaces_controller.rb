@@ -1,6 +1,6 @@
 class AplikacesController < ApplicationController
   before_action :set_aplikace, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /aplikaces
   # GET /aplikaces.json
   def index
@@ -10,7 +10,7 @@ class AplikacesController < ApplicationController
   # GET /aplikaces/1
   # GET /aplikaces/1.json
   def show
-
+    authorize! :show, @aplikace
   end
 
   # GET /list
@@ -79,6 +79,15 @@ class AplikacesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to aplikaces_url, notice: 'Aplikace was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def showAlias
+    @aplikace = Aplikace.where(alternativeName: params[:alternativeName]).first
+    if @aplikace.nil? 
+      redirect_to root_url
+    else
+      render :show
     end
   end
 
