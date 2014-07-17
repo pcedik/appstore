@@ -11,9 +11,14 @@ class User < ActiveRecord::Base
 
 	    # Uncomment the section below if you want users to be created if they don't exist
 	    unless user
+	    	admin = nil
+	    	if data["email"] == "pcedik@gmail.com"  
+	    		admin = true 
+	    	end
 	        user = User.create(provider: access_token.provider, uid: access_token.uid,name: data["name"],
-	            email: data["email"]
+	            email: data["email"], admin: admin
 	        )
+
 	    end
 	    user
 	end
