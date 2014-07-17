@@ -45,6 +45,9 @@ GEM
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.1)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -232,7 +235,9 @@ DEPENDENCIES
   byebug
   cancan
   capistrano
+  capistrano-bundler
   capistrano-rails
+  capistrano-rvm
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails
@@ -245,6 +250,7 @@ DEPENDENCIES
   paperclip
   rails (= 4.1.1)
   rails_admin
+  rake
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   simple_form

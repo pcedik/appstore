@@ -1,9 +1,18 @@
 source 'https://rubygems.org'
 
+
+# Be sure to include rake in your Gemfile
+gem 'rake'
+
 gem 'capistrano'
+gem 'capistrano-rvm'
 gem 'capistrano-rails'
+gem 'capistrano-bundler'
+
 
 gem 'dotenv-rails'
+
+
 gem "simple_form"
 gem "omniauth-google-oauth2"
 gem "cancan"

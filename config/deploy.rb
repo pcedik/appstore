@@ -1,7 +1,11 @@
+# Ensure that bundle is used for rake tasks
+SSHKit.config.command_map[:rake] = "bundle exec rake"
+
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
 set :application, 'appstore'
+set :deploy_user, 'rails'
 set :repo_url, 'git@github.com:pcedik/appstore.git'
 
 #set :user, "rails"
@@ -35,7 +39,7 @@ set :linked_files, %w{config/secrets.yml .env}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 3
 
 namespace :deploy do
 
@@ -43,7 +47,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
