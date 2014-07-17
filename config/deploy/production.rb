@@ -6,9 +6,13 @@ set :branch, "master"
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{rails@185.21.221.243:443}
-role :web, %w{rails@185.21.221.243:443}
-role :db,  %w{rails@185.21.221.243:443}
+# role :app, %w{rails@185.21.221.243:443}
+# role :web, %w{rails@185.21.221.243:443}
+# role :db,  %w{rails@185.21.221.243:443}
+
+role :app, %w{rails@192.168.21.10}
+role :web, %w{rails@192.168.21.10}
+role :db,  %w{rails@192.168.21.10}
 
 
 
