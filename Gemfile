@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'capistrano'
+gem 'capistrano-rails'
+
 gem 'dotenv-rails'
 gem "simple_form"
 gem "omniauth-google-oauth2"
@@ -39,9 +42,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'meta_request'
   gem 'byebug'
-  gem 'capistrano', '~> 3.0', require: false
-  gem 'capistrano-rails',   '~> 1.1', require: false
-  gem 'capistrano-bundler', '~> 1.1', require: false
 end
 
 # Use ActiveModel has_secure_password
