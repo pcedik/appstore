@@ -10,7 +10,6 @@ class AplikacesController < ApplicationController
   # GET /aplikaces/1
   # GET /aplikaces/1.json
   def show
-    authorize! :show, @aplikace
   end
 
   # GET /list

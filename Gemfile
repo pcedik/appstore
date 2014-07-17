@@ -38,6 +38,9 @@ gem 'spring',        group: :development
 group :development do
   gem 'meta_request'
   gem 'byebug'
+  gem 'capistrano', '~> 3.0', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
 end
 
 # Use ActiveModel has_secure_password

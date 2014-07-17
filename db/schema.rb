@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140714085655) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "password",               default: ""
     t.string   "name"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140714085655) do
   create_table "versions", force: true do |t|
     t.integer  "aplikace_platform_id"
     t.string   "version"
+    t.boolean  "stable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
