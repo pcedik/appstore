@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails'
 gem "simple_form"
 gem "omniauth-google-oauth2"
 gem "cancan"
