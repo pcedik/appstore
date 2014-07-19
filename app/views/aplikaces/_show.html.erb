@@ -4,7 +4,8 @@
   <strong>Platforma:</strong>
   <% @aplikace.platforms.each do |plat| %>
         <%= link_to href: 'http://www.android.com/' do %>
-        <%= image_tag plat.platform + '.png', alt: plat.platform %>
+<!--         <%= image_tag plat.platform + '.png', alt: plat.platform %> -->
+        <%= image_tag plat.logo.url(:thumb) %>
   <% end %>
 
   <% end %>

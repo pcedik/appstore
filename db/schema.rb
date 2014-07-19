@@ -40,6 +40,10 @@ ActiveRecord::Schema.define(version: 20140714085655) do
 
   create_table "platforms", force: true do |t|
     t.string   "platform"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

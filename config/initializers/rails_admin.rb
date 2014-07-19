@@ -65,7 +65,7 @@ RailsAdmin.config do |config|
       field :platform
     end
     edit do
-      include_fields :platform
+      include_fields :platform, :logo
     end
     weight -10
     label "Platforma"
