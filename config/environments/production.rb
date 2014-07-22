@@ -1,4 +1,6 @@
 Rails.application.configure do
+
+  OmniAuth.config.full_host = "http://appstore.cedik.net"
   # Settings specified here will take precedence over those in config/application.rb.
 
   Paperclip.options[:command_path] = "/usr/bin/"
