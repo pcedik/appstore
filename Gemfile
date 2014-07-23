@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem 'mysql2'
 # Be sure to include rake in your Gemfile
 gem 'rake'
 
