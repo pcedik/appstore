@@ -1,4 +1,5 @@
 class AplikacesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_aplikace, only: [:show, :edit, :update, :destroy]
   
   # GET /aplikaces
@@ -106,5 +107,7 @@ class AplikacesController < ApplicationController
          
         :previews_attributes => [:foto])
     end
+
+    
 
 end

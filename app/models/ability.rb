@@ -5,8 +5,13 @@ class Ability
     user ||= User.new
     can :access, :rails_admin   # grant access to rails_admin
     can :dashboard              # grant access to the dashboard
+    can :index, Aplikace
     if user && user.admin?
         can :manage, :all
+
+    end
+    if user && user.uid? 
+        can :list, Aplikace
     end
     # Define abilities for the passed in user here. For example:
     #

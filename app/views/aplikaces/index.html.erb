@@ -1,4 +1,4 @@
-<h1>Seznam aplikaci</h1>
+<h1>Vítejte v aplikaci appstore</h1>
 
 <table>
   <thead>
@@ -8,19 +8,9 @@
   </thead>
 
   <tbody>
-    <% @aplikaces.each do |aplikace| %>
-      <tr>
-        <td><%= aplikace.title %></td>
-        <td><%= link_to 'Zobrazit', aplikace, class:"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini" %></td>
-        <td><%= link_to 'Editovat', edit_aplikace_path(aplikace),class:"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini" %></td>
-        <td><div data-role="controlgroup" data-type="horizontal" data-mini="true"><%= link_to 'Smazat', aplikace, method: :delete, data: { confirm: 'Jste si jisti?' }, class: "ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-delete ui-btn-b"%></div></td>
-      </tr>
-    <% end %>
+   <p><%= flash[:alert] %></p>
+    Pro vstup do aplikace je nutné být přihlášen účtem google
   </tbody>
 </table>
 
 <br>
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-<%= link_to 'Pridat', new_aplikace_path, class: "ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-plus ui-btn-b" %>
-<%= link_to 'List aplikaci', list_path, class: "ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-plus ui-btn-b" %>
-</div>

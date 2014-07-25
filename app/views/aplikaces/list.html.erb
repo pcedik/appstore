@@ -1,9 +1,12 @@
-<%= link_to 'Administrace', rails_admin.dashboard_path %>
+<% if can? :manage, @aplikace %>
+	<%= link_to 'Administrace', rails_admin.dashboard_path %>
+<% end %>
+
 <% 
    @aplikaces.each do |aplikace| 
-   @aplikace = aplikace 
+		@aplikace = aplikace 
 %>
 
-<%= render 'show' %>
+		<%= render 'show' %>
 
-<% end %>
+	<% end %>
