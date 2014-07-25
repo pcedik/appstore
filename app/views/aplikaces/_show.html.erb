@@ -3,36 +3,41 @@
   <%= @aplikace.title %><br/>
   <strong>Platforma:</strong>
   <% @aplikace.platforms.each do |plat| %>
-        <% 
-            link = install_files(plat.id)
-            unless link.nil? || link.last.nil? %>
-              <%= link_to link.last.file.url(:original, false) do %>
-                  <%= image_tag plat.logo.url(:thumb) %>
-              <% end 
-            else %>
-              <%= image_tag plat.logo.url(:thumb) %>
-        <%  end %>
+      <%  
+          if @plId.nil? || @plId == plat.id
+              link = install_files(plat.id)
+              unless link.nil? || link.last.nil? %>
+                <%= link_to link.last.file.url(:original, false) do %>
+                    <%= image_tag plat.logo.url(:thumb) %>
+                <% end 
+              else %>
+                <%= image_tag plat.logo.url(:thumb) %>
+          <%  end 
+          end %>
 
 
   <% end %>
   <br/> 
   <strong>Verze:</strong>
-  <% @aplikace.aplikacePlatforms.each do |ver| %>
-  <br/>
-  Verze pro plaftormu <%= ver.platform.platform %>:
-      <% ver.versions.each do |ver2| %>
-          <br/>
-          <%= ver2.version -%> :
+  <% @aplikace.aplikacePlatforms.each do |ver| 
+    if @plId.nil? || @plId == ver.platform.id
+        %>
+        <br/>
+        Verze pro plaftormu <%= ver.platform.platform %>:
+            <% ver.versions.each do |ver2| %>
+                <br/>
+                <%= ver2.version -%> :
 
-          <% ver2.attachments.each do |install| %>
-              <% unless install.nil? %>
-                  <%= link_to "Download", install.file.url(:original, false) %> ,
-              <% end %>
-          <% end %>
-      <% end %>
+                <% ver2.attachments.each do |install| %>
+                    <% unless install.nil? %>
+                        <%= link_to "Download", install.file.url(:original, false) %> ,
+                    <% end %>
+                <% end %>
+            <% end %>
 
-      <br/>
-  <% end %> 
+            <br/>
+        <% end %> 
+    <% end %> 
 
   <strong>Popis:</strong>
   <%= @aplikace.description %>

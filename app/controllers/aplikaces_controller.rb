@@ -22,6 +22,7 @@ class AplikacesController < ApplicationController
      end
      unless plat.nil? 
         @aplikaces = plat.aplikaces
+        @plId = plat.id
      else 
         @aplikaces = Aplikace.all
      end
