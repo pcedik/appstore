@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Appstore</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= html_import_tag "application", "data-turbolinks-track" => true %>
+  <title>Polymer Rails Example</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div>
- 	  <% if current_user %>
-        Signed in as <strong><%= current_user.email %></strong>!
-        <%= link_to "Odhlásit", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Přihlásit pomocí google", user_omniauth_authorize_path(:google_oauth2), id: "sign_in" %>
-      <% end %>
-</div>
   <%= yield %>
+
 </body>
 </html>

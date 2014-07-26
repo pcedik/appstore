@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'polymer-rails', '0.1.8'
+
 
 gem 'mysql2'
 # Be sure to include rake in your Gemfile
@@ -50,8 +52,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'spring',        group: :development
 
 group :development do
-  gem 'meta_request'
   gem 'byebug'
+  gem 'rails_layout'
 end
 
 # Use ActiveModel has_secure_password

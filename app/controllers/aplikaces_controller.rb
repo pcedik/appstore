@@ -26,6 +26,7 @@ class AplikacesController < ApplicationController
      else 
         @aplikaces = Aplikace.all
      end
+     @platforms = Platform.all
   end
 
 
