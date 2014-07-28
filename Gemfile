@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'polymer-rails', '0.1.8'
-
+gem 'emcee', github: 'ahuth/emcee'
 
 gem 'mysql2'
 # Be sure to include rake in your Gemfile
@@ -12,9 +11,7 @@ gem 'capistrano-rvm'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 
-
 gem 'dotenv-rails'
-
 
 gem "simple_form"
 gem "omniauth-google-oauth2"
@@ -24,10 +21,8 @@ gem 'devise'
 gem 'rails_admin'
 gem 'paperclip'
 
-gem 'emcee'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -53,7 +48,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
   gem 'byebug'
-  gem 'rails_layout'
 end
 
 # Use ActiveModel has_secure_password

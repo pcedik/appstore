@@ -1,6 +1,29 @@
+<%= html_import_tag "show", "data-turbolinks-track" => true %>
 <p id="notice"><%= notice %></p>
 
-<%= render 'show' %>
+<polymer-element name="post-card">
+	  <template>
+	    <style>
+		    :host {
+		      display: block;
+		      position: relative;
+		      background-color: white;
+		      padding: 20px;
+		      width: 100%;
+		      font-size: 1.2rem;
+		      font-weight: 300;
+		    }
+		    .card-header {
+		      margin-bottom: 10px;
+		    }
+	    </style>
 
+    <!-- CARD CONTENTS GO HERE -->
+    		<%= render 'show' %>
+	  </template>
 <%= link_to 'Editovat', rails_admin.edit_path(model_name: 'aplikace', id: @aplikace.id) %> |
 <%= link_to 'Zpet', aplikaces_path %>
+  <script>
+  	Polymer({});
+  </script>
+</polymer-element>
