@@ -1,36 +1,89 @@
-<%= html_import_tag "list", "data-turbolinks-track" => true %>
-<core-header-panel>
+<style>
+  html,body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+  }
+  core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
+  }
+  core-toolbar {
+    background: #03a9f4;
+    color: white;
+  }
+  #tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 1.0rem;
+  }
+  .container {
+    width: 80%;
+    margin: 50px auto;
+  }
+  @media (min-width: 481px) {
+    #tabs {
+      width: 320px;
+    }
+    .container {
+      width: 400px;
+    }
+
+  }
+  .login {
+    position: absolute;
     
-  <core-toolbar>
-  	<paper-tabs id="tabs" valueattr="name" selected="all" self-end>
-  	<paper-tab name="all">Vse</paper-tab>
-  	<% @platforms.each do |plat| %>
-	    <paper-tab name="<%= plat.platform %>"><%= plat.platform %></paper-tab>
-	<% end %>
-  </core-toolbar>
+    right: 10px;
+    font-size: 0.8rem;
+  }
+  .admin {
+    font-size: 0.8rem;
+    background-color: red;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+  }
+</style>
 
-  <!-- main page content will go here --> 
-<% 
-   @aplikaces.each do |aplikace| 
-		@aplikace = aplikace 
-%>
+<core-header-panel>
+    <core-toolbar>
+      <paper-tabs id="tabs" selected="all" self-end>
+            <paper-tab name="all">Vše</paper-tab>
+            <% @platforms.each do |plat| %>
+            <paper-tab name="<%= plat.platform %>"><%= plat.platform %></paper-tab>
+            <% end %>
 
-		<%= render 'show' %>
+      </paper-tabs>
+      <div class="login">  
+           <% if current_user %>
+            Přihlášen jako <strong><%= current_user.email %></strong>!
+            <%= link_to "Odhlásit", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Přihlásit pomocí google", user_omniauth_authorize_path(:google_oauth2), id: "sign_in" %>
+      <% end %>
+      </div>
+      <% if can? :manage, @aplikace %>
+            <div class="admin">
+              <b><%= link_to 'Administrace', rails_admin.dashboard_path %></b>
+            </div>
+      <% end %>
+    </core-toolbar>
+    <div class="container" layout vertical center>
+      <appl-list show="all"></appl-list>
+    </div>
+  </core-header-panel>
 
-	<% end %>
+  <script>
+  var list = document.querySelector('appl-list');
+  var tabs = document.querySelector('paper-tabs');
 
-</core-header-panel>
-
-<% if can? :manage, @aplikace %>
-	<%= link_to 'Administrace', rails_admin.dashboard_path %>
-<% end %>
-
-
-
-<script>
-    var tabs = document.querySelector('paper-tabs');
-    tabs.addEventListener('core-select', function(e) {
-      console.log("tab change: " + e.target.getAttribute('name') +" selected = " + e.detail.isSelected);
-      console.log("Selected: " + tabs.selected);
-    });
-</script>
+  tabs.addEventListener('core-select', function() {
+    list.show = tabs.selected;
+  });
+  </script>  

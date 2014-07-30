@@ -8,6 +8,14 @@
   </thead>
 
   <tbody>
+  <div>
+ 	  <% if current_user %>
+        Signed in as <strong><%= current_user.email %></strong>!
+        <%= link_to "Odhlásit", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Přihlásit pomocí google", user_omniauth_authorize_path(:google_oauth2), id: "sign_in" %>
+      <% end %>
+</div>
    <p><%= flash[:alert] %></p>
     Pro vstup do aplikace je nutné být přihlášen účtem google
   </tbody>

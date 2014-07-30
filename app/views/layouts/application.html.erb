@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-
+  <%= html_import_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <link rel="import" href="/finished/appl-list.html">
 </head>
 
 <body unresolved touch-action="auto">
-<div>
- 	  <% if current_user %>
-        Signed in as <strong><%= current_user.email %></strong>!
-        <%= link_to "Odhlásit", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Přihlásit pomocí google", user_omniauth_authorize_path(:google_oauth2), id: "sign_in" %>
-      <% end %>
-</div>
+
 
   <%= yield %>
 
