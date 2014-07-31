@@ -29,27 +29,21 @@
   }
   @media (min-width: 481px) {
     #tabs {
-      width: 320px;
+      width: 350px;
     }
     .container {
-      width: 400px;
+      width: 80%;
     }
 
   }
   .login {
     position: absolute;
-    
+    top:5px;
     right: 10px;
     font-size: 0.8rem;
   }
-  .admin {
-    font-size: 0.8rem;
-    background-color: red;
-    position: absolute;
-    right: 10px;
-    top: 20px;
-  }
-</style>
+ </style>
+
 
 <core-header-panel>
     <core-toolbar>
@@ -61,21 +55,20 @@
 
       </paper-tabs>
       <div class="login">  
-           <% if current_user %>
+          <% if can? :manage, @aplikace %>
+              <b><%= link_to 'Administrace', rails_admin.dashboard_path, style: 'color:white;background-color:#b94a48;padding:2px 4px;border-radius: 3px' %></b>
+              &nbsp
+          <% end %> 
+          <% if current_user %>
             Přihlášen jako <strong><%= current_user.email %></strong>!
-            <%= link_to "Odhlásit", destroy_user_session_path, method: :delete %>
+            <%= link_to "Odhlásit", destroy_user_session_path, method: :delete, style: 'color:white;' %>
           <% else %>
             <%= link_to "Přihlásit pomocí google", user_omniauth_authorize_path(:google_oauth2), id: "sign_in" %>
       <% end %>
       </div>
-      <% if can? :manage, @aplikace %>
-            <div class="admin">
-              <b><%= link_to 'Administrace', rails_admin.dashboard_path %></b>
-            </div>
-      <% end %>
     </core-toolbar>
     <div class="container" layout vertical center>
-      <appl-list show="all"></appl-list>
+      <apps-list show="all"></apps-list>
     </div>
   </core-header-panel>
 

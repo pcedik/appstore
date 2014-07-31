@@ -21,10 +21,10 @@ class AplikacesController < ApplicationController
         plat = Platform.ignoreCase(params[:platforma]).first
      end
      unless plat.nil? 
-        @aplikaces = plat.aplikaces
+        @aplikaces = plat.aplikaces.order("id DESC")
         @plId = plat.id
      else 
-        @aplikaces = Aplikace.all
+        @aplikaces = Aplikace.all.order("id DESC")
      end
      @platforms = Platform.all
   end

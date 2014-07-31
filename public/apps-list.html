@@ -1,0 +1,37 @@
+<link rel="import" href="app-card.html">
+
+<polymer-element name="apps-list" attributes="show">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    app-card {
+      margin-bottom: 30px;
+    }
+    </style>
+
+    <core-ajax url="/list.json?platforma={{show}}" auto response="{{apps}}" handleAs="json"></core-ajax>
+    
+    <div layout vertical center>
+      <template repeat="{{app in apps}}">
+        <app-card>
+
+          <template repeat="{{plat, i in app.platforms}}">
+              <img src="{{app.platforms[i].url}}" width="30" height="30">
+          </template>
+            
+          <h2>{{app.title}}</h2>
+          <p>{{app.description}}</p>
+        </app-card>
+      </template>
+    </div>
+  </template>
+
+  <script>
+  Polymer('apps-list', {
+    show: "all"
+  });
+  </script>
+</polymer-element>
