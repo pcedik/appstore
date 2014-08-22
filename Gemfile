@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'polymer-rails'
 gem 'polymer-core-rails'
+gem 'polymer-paper-rails'
 
 gem 'emcee', github: 'ahuth/emcee'
 
