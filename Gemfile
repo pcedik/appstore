@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'polymer-rails'
+gem 'polymer-core-rails'
 
 gem 'emcee', github: 'ahuth/emcee'
 
