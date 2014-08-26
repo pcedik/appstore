@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'polymer-rails'
-gem 'polymer-core-rails'
-gem 'polymer-paper-rails'
-
-gem 'emcee', github: 'ahuth/emcee'
+gem 'emcee', '~> 1.0.6'
 
 gem 'mysql2'
 # Be sure to include rake in your Gemfile
