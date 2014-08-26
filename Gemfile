@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'polymer-rails', '~> 0.2.1'
+
 gem 'emcee', '~> 1.0.6'
 
 gem 'mysql2'
