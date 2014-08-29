@@ -55,6 +55,9 @@ RailsAdmin.config do |config|
     end
     label "Seznam aplikací"
     label_plural "Seznam aplikací"
+    show do
+      exclude_fields :aplikacePlatforms
+    end
   end
 
   config.model Platform do
@@ -76,6 +79,15 @@ RailsAdmin.config do |config|
     object_label_method do
       :version
     end
+    list do
+      field :aplikace_platform_id do
+          formatted_value do
+            aplikace_platform_label_method
+          end
+      end
+      field :version
+      field :stable
+    end
     edit do
       exclude_fields :aplikace_platform_id
     end
@@ -89,7 +101,16 @@ RailsAdmin.config do |config|
       :platform_label_method
     end
     edit do
-      exclude_fields :aplikace, :platform
+      configure :platform do
+        read_only true
+      end
+      configure :aplikace do
+        read_only true
+      end
+    end
+    list do
+      field :aplikace
+      field :platform 
     end
     parent Aplikace
     label "Nastavení aplikací"
@@ -98,14 +119,27 @@ RailsAdmin.config do |config|
   end
 
   config.model Preview do
-    object_label_method do
-      :foto_file_name
-    end
-    edit do
-      exclude_fields :aplikace_platform_id
-    end
     visible true
     parent Aplikace
+    list do
+      field :aplikace_platform_id do
+        formatted_value do
+          aplikace_platform_label_method
+        end
+      end
+      field :foto
+    end
+    edit do
+      configure :aplikace_platform_id do
+        read_only true
+      end
+      field :aplikace_platform_id do
+        formatted_value do
+          aplikace_platform_label_method
+        end
+      end
+      field :foto
+    end
   end
 
   config.model Attachment do
@@ -124,6 +158,10 @@ RailsAdmin.config do |config|
 
   def platform_label_method
     "Platforma #{Platform.find(self.platform_id).platform}"
+  end
+
+  def aplikace_platform_label_method
+    "#{AplikacePlatform.find(bindings[:object].aplikace_platform_id).platform.platform} - #{AplikacePlatform.find(bindings[:object].aplikace_platform_id).aplikace.title}"
   end
 
 end
